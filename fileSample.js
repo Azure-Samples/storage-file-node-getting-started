@@ -26,7 +26,6 @@
 * - File Service REST API - https://msdn.microsoft.com/en-us/library/dn167006.aspx
 * - File Service Node API - http://azure.github.io/azure-storage-node/FileService.html
 * - Delegating Access with Shared Access Signatures - http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/
-* - Storage Emulator - https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/
 */
 
 var fs = require('fs');

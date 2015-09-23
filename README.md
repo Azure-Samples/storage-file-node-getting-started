@@ -17,12 +17,6 @@ get a FREE trial account [here](http://go.microsoft.com/fwlink/?LinkId=330212)
 
 This sample can be run using either the Azure Storage Emulator that installs as part of this SDK - or by
 updating the app.config file with your account name and key.
-To run the sample using the Storage Emulator (default option):
-
-1. Download and Install the Azure Storage Emulator [here](http://azure.microsoft.com/en-us/downloads/).
-2. Start the Azure Storage Emulator (once only) by pressing the Start button or the Windows key and searching for it by typing "Azure Storage Emulator". Select it from the list of applications to start it.
-3. Open the app.config file and set the configuration for the emulator ("useDevelopmentStorage":true).
-4. Run the sample by: node ./fileSample.js
 
 To run the sample using the Storage Service
 
@@ -38,4 +32,3 @@ To run the sample using the Storage Service
 - [File Service REST API](https://msdn.microsoft.com/en-us/library/dn167006.aspx)
 - [File Service Node API](http://azure.github.io/azure-storage-node/FileService.html)
 - [Delegating Access with Shared Access Signatures](http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/)
-- [Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
