@@ -70,7 +70,12 @@ function runFileSamples() {
   scenarios[current].scenario(callback);
 }
 
-// File basics
+/**
+* File basics.
+* @ignore
+* 
+* @param {errorOrResult}        callback                         The callback function.
+*/
 function basicStorageFileOperations(callback) {
   // Create a file client for interacting with the file service from connection string
   // How to create a storage connection string - http://msdn.microsoft.com/en-us/library/azure/ee758697.aspx
@@ -154,7 +159,32 @@ function basicStorageFileOperations(callback) {
   });
 }
 
-function listFilesAndDirectories(fileService, share, directory, options, token, callback) {
+/**
+* Lists file in the share.
+* @ignore
+*
+* @param {FileService}        fileService                         The file service client.
+* @param {string}             share                               The share name.
+* @param {object}             token                               A continuation token returned by a previous listing operation. 
+*                                                                 Please use 'null' or 'undefined' if this is the first operation.
+* @param {object}             [options]                           The request options.
+* @param {int}                [options.maxResults]                Specifies the maximum number of directories to return per call to Azure ServiceClient. 
+*                                                                 This does NOT affect list size returned by this function. (maximum: 5000)
+* @param {LocationMode}       [options.locationMode]              Specifies the location mode used to decide which location the request should be sent to. 
+*                                                                 Please see StorageUtilities.LocationMode for the possible values.
+* @param {int}                [options.timeoutIntervalInMs]       The server timeout interval, in milliseconds, to use for the request.
+* @param {int}                [options.maximumExecutionTimeInMs]  The maximum execution time, in milliseconds, across all potential retries, to use when making this request.
+*                                                                 The maximum execution time interval begins at the time that the client begins building the request. The maximum
+*                                                                 execution time is checked intermittently while performing requests, and before executing retries.
+* @param {string}             [options.clientRequestId]           A string that represents the client request ID with a 1KB character limit.
+* @param {bool}               [options.useNagleAlgorithm]         Determines whether the Nagle algorithm is used; true to use the Nagle algorithm; otherwise, false.
+*                                                                 The default value is false.
+* @param {errorOrResult}      callback                            `error` will contain information
+*                                                                 if an error occurs; otherwise `result` will contain `entries` and `continuationToken`. 
+*                                                                 `entries`  gives a list of directories and the `continuationToken` is used for the next listing operation.
+*                                                                 `response` will contain information related to this operation.
+*/
+function listFilesAndDirectories(fileService, share, directory, token, options, callback) {
   var items = { files: [], directories: []};
   
   fileService.listFilesAndDirectoriesSegmented(share, directory, token, options, function(error, result) {
@@ -164,7 +194,7 @@ function listFilesAndDirectories(fileService, share, directory, options, token, 
     var token = result.continuationToken;
     if (token) {
       console.log('   Received a page of results. There are ' + result.entries.length + ' items on this page.');
-      listFilesAndDirectories(fileService, share, directory, options, token, callback);
+      listFilesAndDirectories(fileService, share, directory, token, options, callback);
     } else {
       console.log('   Completed listing. There are ' + items.files.length + ' files and ' + items.directories.length + ' directories.' );
       callback(null, items);
@@ -172,6 +202,12 @@ function listFilesAndDirectories(fileService, share, directory, options, token, 
   });
 }
 
+/**
+* Reads the configurations.
+* @ignore
+*
+* @return {Object}
+*/
 function readConfig() {
   return JSON.parse(fs.readFileSync('app.config', 'utf8'));
 }
