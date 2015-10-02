@@ -4,7 +4,7 @@ platforms: nodejs
 author: yaxia
 ---
 
-# Azure Storage: Files
+# Getting Started with Azure File Service in Node.js
 
 Demonstrates how to use the File Storage service.
 File storage stores unstructured data such as text, binary data, documents or media files.
